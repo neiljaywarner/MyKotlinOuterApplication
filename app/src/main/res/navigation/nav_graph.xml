@@ -13,10 +13,8 @@
         <action
             android:id="@+id/action_FirstFragment_to_PhotoViewerFragment"
             app:destination="@id/PhotoViewerFragment" />
-        <action
-            android:id="@+id/action_FirstFragment_to_PhotosFragment"
-            app:destination="@id/PhotosFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/PhotoViewerFragment"
         android:name="com.neiljaywarner.mykotlinouterapplication.PhotoViewerFragment"
@@ -29,14 +27,5 @@
             android:name="fileName"
             app:argType="string"
             android:defaultValue="" />
-    </fragment>
-    <fragment
-        android:id="@+id/PhotosFragment"
-        android:name="com.neiljaywarner.mykotlinouterapplication.PhotosFragment"
-        android:label="Photos"
-        tools:layout="@layout/fragment_photos">
-        <action
-            android:id="@+id/action_PhotosFragment_to_PhotoViewerFragment"
-            app:destination="@id/PhotoViewerFragment" />
     </fragment>
 </navigation>
