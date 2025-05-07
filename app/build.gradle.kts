@@ -26,6 +26,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+        create("profile") {
+            initWith(getByName("debug"))
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -40,7 +43,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -49,6 +51,10 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    debugImplementation("com.example.my_inner_flutter_module:flutter_debug:1.0")
+    // Note: profile build type is skipped for simplicity
+    releaseImplementation("com.example.my_inner_flutter_module:flutter_release:1.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

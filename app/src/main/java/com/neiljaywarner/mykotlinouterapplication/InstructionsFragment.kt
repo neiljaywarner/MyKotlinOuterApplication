@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.neiljaywarner.mykotlinouterapplication.databinding.FragmentInstructionsBinding
 
 class InstructionsFragment : Fragment() {
@@ -28,6 +29,22 @@ class InstructionsFragment : Fragment() {
 
         binding.buttonOpenGallery.setOnClickListener {
             openGallery()
+        }
+
+        binding.buttonTempFlutter.setOnClickListener {
+            navigateToFlutterFragment()
+        }
+    }
+
+    private fun navigateToFlutterFragment() {
+        try {
+            findNavController().navigate(R.id.action_InstructionsFragment_to_FlutterFragment)
+        } catch (e: Exception) {
+            Toast.makeText(
+                requireContext(),
+                "Flutter module not available. Please check instructions in add_to_app.md",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 

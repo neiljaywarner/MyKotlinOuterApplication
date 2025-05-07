@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_InstructionsFragment_to_PhotoViewerFragment"
             app:destination="@id/PhotoViewerFragment" />
+        <action
+            android:id="@+id/action_InstructionsFragment_to_FlutterFragment"
+            app:destination="@id/FlutterFragment" />
     </fragment>
 
     <fragment
@@ -28,4 +31,10 @@
             app:argType="string"
             android:defaultValue="" />
     </fragment>
+
+    <fragment
+        android:id="@+id/FlutterFragment"
+        android:name="com.neiljaywarner.mykotlinouterapplication.FlutterFragment"
+        android:label="Flutter Demo"
+        tools:layout="@layout/fragment_flutter" />
 </navigation>
