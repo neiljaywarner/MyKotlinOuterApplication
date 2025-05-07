@@ -2,7 +2,7 @@
     <string name="app_name">NJWImageTestMay7</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Image Sharing Instructions</string>
+    <string name="instructions_fragment_label">Image Sharing Instructions</string>
     <string name="second_fragment_label">Photo Viewer</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>

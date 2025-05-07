@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/InstructionsFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.neiljaywarner.mykotlinouterapplication.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/InstructionsFragment"
+        android:name="com.neiljaywarner.mykotlinouterapplication.InstructionsFragment"
+        android:label="@string/instructions_fragment_label"
+        tools:layout="@layout/fragment_instructions">
         <action
-            android:id="@+id/action_FirstFragment_to_PhotoViewerFragment"
+            android:id="@+id/action_InstructionsFragment_to_PhotoViewerFragment"
             app:destination="@id/PhotoViewerFragment" />
     </fragment>
 
@@ -21,8 +21,8 @@
         android:label="Photo Viewer"
         tools:layout="@layout/fragment_photo_viewer">
         <action
-            android:id="@+id/action_PhotoViewerFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_PhotoViewerFragment_to_InstructionsFragment"
+            app:destination="@id/InstructionsFragment" />
         <argument
             android:name="fileName"
             app:argType="string"
