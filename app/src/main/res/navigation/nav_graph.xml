@@ -11,9 +11,6 @@
         android:label="@string/instructions_fragment_label"
         tools:layout="@layout/fragment_instructions">
         <action
-            android:id="@+id/action_InstructionsFragment_to_PhotoViewerFragment"
-            app:destination="@id/PhotoViewerFragment" />
-        <action
             android:id="@+id/action_InstructionsFragment_to_FlutterFragment"
             app:destination="@id/FlutterFragment" />
     </fragment>

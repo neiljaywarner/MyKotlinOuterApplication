@@ -1,3 +1,5 @@
+
+** There's a lot of "use this because of reflection" stuff that's probably nto right
 1. review integration technique and either fix per best practice
 2. or make a comment about how it should be done
 3. Dont waste too much time becaue the integration with flutter

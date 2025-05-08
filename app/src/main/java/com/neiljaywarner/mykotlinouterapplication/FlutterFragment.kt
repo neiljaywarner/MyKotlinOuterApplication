@@ -8,12 +8,34 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 /**
- * A fragment that embeds a Flutter module.
+ * A placeholder for the Flutter fragment.
+ * This fragment currently shows a placeholder message.
+ * Full Flutter integration with Pigeon is pending.
  */
 class FlutterFragment : Fragment() {
-    // Using Any type to avoid compile errors when Flutter embedding library isn't available
-    private var flutterFragment: Any? = null
 
+    companion object {
+        const val ARG_IMAGE_URI = "image_uri"
+        private const val TAG = "FlutterFragment"
+        
+        fun newInstance(imageUri: String?): FlutterFragment {
+            val fragment = FlutterFragment()
+            val args = Bundle()
+            if (imageUri != null) {
+                args.putString(ARG_IMAGE_URI, imageUri)
+            }
+            fragment.arguments = args
+            return fragment
+        }
+    }
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        // Get the image URI from arguments
+        imageUri = arguments?.getString(ARG_IMAGE_URI)
+    }
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,93 +43,26 @@ class FlutterFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_flutter, container, false)
-        
-        try {
-            // Note: The following code requires the Flutter embedding library at runtime.
-            // This will be automatically included by the include_flutter.groovy script.
 
-            // Get the FlutterFragment class via reflection to avoid compile-time dependency
-            val flutterFragmentClass = Class.forName("io.flutter.embedding.android.FlutterFragment")
+        // Get the image URI from arguments if passed
+        val imageUri = arguments?.getString(ARG_IMAGE_URI)
 
-            // Create Flutter Fragment using the createDefault() static method
-            val createDefaultMethod = flutterFragmentClass.getMethod("createDefault")
-            flutterFragment = createDefaultMethod.invoke(null)
-
-            if (flutterFragment != null && flutterFragment is Fragment) {
-                // Add the Flutter Fragment to the container
-                childFragmentManager.beginTransaction()
-                    .replace(R.id.flutter_container, flutterFragment as Fragment)
-                    .commit()
-            } else {
-                showError(view, "Flutter fragment creation failed")
-            }
-        } catch (e: Exception) {
-            // Show error if Flutter integration fails
-            showError(view, "Flutter module not ready: ${e.message}")
-        }
-        
-        return view
-    }
-
-    private fun showError(view: View, errorMessage: String) {
-        val flutterContainer = view.findViewById<ViewGroup>(R.id.flutter_container)
-        flutterContainer.removeAllViews()  // Clear any existing views
-
+        // Show a placeholder message
         val textView = TextView(requireContext()).apply {
-            text = errorMessage
-            textSize = 16f
-            setPadding(32, 32, 32, 32)
+            text = if (imageUri != null) {
+                "Flutter Module Placeholder\nImage URI: $imageUri\n(Pigeon integration pending)"
+            } else {
+                "Flutter Module Placeholder\n(Pigeon integration pending)"
+            }
+            textSize = 18f
             textAlignment = View.TEXT_ALIGNMENT_CENTER
+            setPadding(32, 32, 32, 32)
         }
+        
+        val flutterContainer = view.findViewById<ViewGroup>(R.id.flutter_container)
+        flutterContainer.removeAllViews() // Clear previous views if any
         flutterContainer.addView(textView)
-    }
 
-    // Forward lifecycle events to the Flutter Fragment when available
-    override fun onResume() {
-        super.onResume()
-        try {
-            if (flutterFragment != null) {
-                val onResumeMethod = flutterFragment!!.javaClass.getMethod("onResume")
-                onResumeMethod.invoke(flutterFragment)
-            }
-        } catch (e: Exception) {
-            // Ignore lifecycle method errors
-        }
-    }
-    
-    override fun onPause() {
-        super.onPause()
-        try {
-            if (flutterFragment != null) {
-                val onPauseMethod = flutterFragment!!.javaClass.getMethod("onPause")
-                onPauseMethod.invoke(flutterFragment)
-            }
-        } catch (e: Exception) {
-            // Ignore lifecycle method errors
-        }
-    }
-    
-    override fun onStart() {
-        super.onStart()
-        try {
-            if (flutterFragment != null) {
-                val onStartMethod = flutterFragment!!.javaClass.getMethod("onStart")
-                onStartMethod.invoke(flutterFragment)
-            }
-        } catch (e: Exception) {
-            // Ignore lifecycle method errors
-        }
-    }
-    
-    override fun onStop() {
-        super.onStop()
-        try {
-            if (flutterFragment != null) {
-                val onStopMethod = flutterFragment!!.javaClass.getMethod("onStop")
-                onStopMethod.invoke(flutterFragment)
-            }
-        } catch (e: Exception) {
-            // Ignore lifecycle method errors
-        }
+        return view
     }
 }

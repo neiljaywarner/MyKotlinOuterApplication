@@ -1,0 +1,41 @@
+# AI Interactions Log
+
+## 2023-05-07 14:30:00
+PROMPT: "Please modify this app so that the first fragment is instructions to tap the FAB to go to photos and when yuo tap the fab you go to photos andthen you can share to fragment2 and when you share to fragment2 it says the name of the fiel and shows the image."
+
+RESPONSE SUMMARY: Created an Android app with three fragments - InstructionsFragment, PhotosFragment, and SecondFragment. Added UI elements and navigation between them. Implemented functionality to take a photo and display it in SecondFragment.
+
+## 2023-05-07 15:15:00
+PROMPT: "ok now make a readme_user.md that gives exact steps to test that will make sense with a real phoen also rename secondfragmen to something better."
+
+RESPONSE SUMMARY: Renamed SecondFragment to PhotoViewerFragment and created a README_USER.md with detailed steps to test the app on a real phone.
+
+## 2023-05-07 15:45:00
+PROMPT: "please remove settings menu from upper right in thr fragment. Pleaes use better text than 'First fragment' laso it says no app foudn to open photos, please simplify for most industry standard best practice way to work or search play.google.com for photos app and use package name or whatever is safest-basically make it work :)"
+
+RESPONSE SUMMARY: Removed settings menu, improved navigation labels, simplified photo opening implementation using standard Intent approach.
+
+## 2023-05-07 16:15:00
+PROMPT: "please make an md file add_to_app.md with instructions on an inner flutter module, make a sibling flutter moduler that says 'Hi From Inner Flutter Module' in a textview. By sibling I mean that the root directory is AndroidStudioProjects then MyKotlinOuterApplication is one directory and MyInnerFlutterModule is another directory. Then weshould have a button right below google photos that says TempFLutter and launches the flutter fragment"
+
+RESPONSE SUMMARY: Created add_to_app.md with instructions for adding a Flutter module. Implemented FlutterFragment with a TempFlutter button in the app to launch Flutter content.
+
+## 2023-05-07 17:00:00
+PROMPT: "i already created the flutter app sibling, please use it -see the output fromterminal neil@Neils-MacBook-Pro AndroidStudioProjects % ls my_inner_flutter_module analysis_options.yaml pubspec.lock lib pubspec.yaml my_inner_flutter_module_android.iml README.md my_inner_flutter_module.iml test"
+
+RESPONSE SUMMARY: Updated app to use the existing Flutter module named my_inner_flutter_module. Modified build files to use AAR artifacts and implemented method channel communication.
+
+## 2023-05-07 17:45:00
+PROMPT: "please follow instructions in the output"
+
+RESPONSE SUMMARY: Fixed build configuration to follow the output from Flutter build, updating dependency configuration in Gradle files.
+
+## 2023-05-07 18:15:00
+PROMPT: "please modify so the images are being sent to the flutter module via pigeo nto https://github.com/neiljaywarner/my_inner_flutter_module instead of to PhotoViewerFragment."
+
+RESPONSE SUMMARY: Modified the app to send images to the Flutter module via method channel communication instead of showing them in PhotoViewerFragment.
+
+## 2023-05-07 19:00:00
+PROMPT: "this is a good start but please look at https://github.com/neiljaywarner/my_inner_flutter_module/blob/main/android_outer.md and https://github.com/neiljaywarner/my_inner_flutter_module/blob/main/android/src/main/kotlin/com/example/my_inner_flutter_module/GeneratedPigeon.kt and https://github.com/neiljaywarner/my_inner_flutter_module/blob/main/lib/pigeon/image_api.dart and https://github.com/neiljaywarner/my_inner_flutter_module/blob/main/lib/screens/photo_viewer_screen.dart and utilize pigeon for typesafe interaction instead of ordinary method calls. also please log these interactions in an ai_interactions log wiht prompts and timestamps"
+
+RESPONSE SUMMARY: Implementing Pigeon for typesafe interaction between Android and Flutter. Creating ai_interactions.log to track prompts and timestamps.

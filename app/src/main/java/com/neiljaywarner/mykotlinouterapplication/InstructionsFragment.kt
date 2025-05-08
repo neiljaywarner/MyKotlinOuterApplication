@@ -1,12 +1,14 @@
 package com.neiljaywarner.mykotlinouterapplication
 
-import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.neiljaywarner.mykotlinouterapplication.databinding.FragmentInstructionsBinding
@@ -15,6 +17,24 @@ class InstructionsFragment : Fragment() {
 
     private var _binding: FragmentInstructionsBinding? = null
     private val binding get() = _binding!!
+
+    // ActivityResultLauncher for picking an image
+    private val pickImageLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let {
+                // Navigate to the FlutterFragment with the selected image URI
+                Log.d("InstructionsFragment", "Image selected: ${it.toString()}")
+
+                // Create arguments bundle with the image URI
+                val args = bundleOf(FlutterFragment.ARG_IMAGE_URI to it.toString())
+
+                // Navigate to FlutterFragment with the image URI
+                findNavController().navigate(
+                    R.id.action_InstructionsFragment_to_FlutterFragment,
+                    args
+                )
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,10 +48,12 @@ class InstructionsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonOpenGallery.setOnClickListener {
-            openGallery()
+            // Launch the image picker using ActivityResultLauncher
+            pickImageLauncher.launch("image/*")
         }
 
         binding.buttonTempFlutter.setOnClickListener {
+            // Just navigate to the FlutterFragment without an image
             navigateToFlutterFragment()
         }
     }
@@ -44,20 +66,6 @@ class InstructionsFragment : Fragment() {
                 requireContext(),
                 "Flutter module not available. Please check instructions in add_to_app.md",
                 Toast.LENGTH_LONG
-            ).show()
-        }
-    }
-
-    private fun openGallery() {
-        try {
-            // Create an implicit intent to open the gallery
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivity(intent)
-        } catch (e: Exception) {
-            Toast.makeText(
-                requireContext(),
-                "Could not open gallery. Please check if you have a gallery app installed.",
-                Toast.LENGTH_SHORT
             ).show()
         }
     }
