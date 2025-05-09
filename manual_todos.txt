@@ -4,3 +4,4 @@
 2. or make a comment about how it should be done
 3. Dont waste too much time becaue the integration with flutter
 is alreadyd one, it's the image share that is being POC'd
+4.Change reference Android Studo Projects to ".." i did that years ago Zand it worked

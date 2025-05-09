@@ -52,11 +52,14 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
-    debugImplementation("com.example.my_inner_flutter_module:flutter_debug:1.0")
-    // Note: profile build type is skipped for simplicity
-    releaseImplementation("com.example.my_inner_flutter_module:flutter_release:1.0")
+    debugImplementation("com.example.receive_images_flutter_demo:flutter_debug:1.0")
+    releaseImplementation("com.example.receive_images_flutter_demo:flutter_release:1.0")
 
     testImplementation(libs.junit)
+    testImplementation("org.mockito:mockito-core:5.7.0")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
+    androidTestImplementation("androidx.test:core:1.5.0")
+    androidTestImplementation("androidx.test.ext:junit-ktx:1.1.5")
 }

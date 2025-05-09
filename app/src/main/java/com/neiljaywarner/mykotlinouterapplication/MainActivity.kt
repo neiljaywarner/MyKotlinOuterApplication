@@ -56,10 +56,10 @@ class MainActivity : AppCompatActivity() {
             if (imageUri != null) {
                 Log.d(TAG, "Received shared image: $imageUri")
 
-                // Navigate directly to PhotoViewerFragment with the image URI
-                val bundle = bundleOf("fileName" to imageUri.toString())
+                // Navigate directly to FlutterFragment with the image URI
+                val bundle = bundleOf(FlutterFragment.ARG_IMAGE_URI to imageUri.toString())
                 findNavController(R.id.nav_host_fragment_content_main)
-                    .navigate(R.id.PhotoViewerFragment, bundle)
+                    .navigate(R.id.FlutterFragment, bundle)
             }
         } else if (Intent.ACTION_SEND_MULTIPLE == action && type?.startsWith("image/") == true) {
             // Handle multiple images being sent (we'll just use the first one for simplicity)
@@ -74,10 +74,10 @@ class MainActivity : AppCompatActivity() {
             if (!imageUris.isNullOrEmpty()) {
                 Log.d(TAG, "Received multiple shared images, using first one: ${imageUris[0]}")
 
-                // Navigate directly to PhotoViewerFragment with the first image URI
-                val bundle = bundleOf("fileName" to imageUris[0].toString())
+                // Navigate directly to FlutterFragment with the first image URI
+                val bundle = bundleOf(FlutterFragment.ARG_IMAGE_URI to imageUris[0].toString())
                 findNavController(R.id.nav_host_fragment_content_main)
-                    .navigate(R.id.PhotoViewerFragment, bundle)
+                    .navigate(R.id.FlutterFragment, bundle)
             }
         }
     }
